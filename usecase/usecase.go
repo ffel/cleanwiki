@@ -26,6 +26,27 @@ func (notes *Notes) Add(title string, content []byte) error {
 	return nil
 }
 
+// Read implements use case "read content by title"
+//
+// in case there is no contents, an empty slice of bytes
+// is returned
+func (notes *Notes) Read(title string) []byte {
+	// we must consider the fact that the implementations FindByTitle
+	// may return nil or a zero value Page
+	// see e.g. http://tour.golang.org/#42
+	//
+	// I think it is better that the FindByTitle returns an
+	// error instead of an (partially) uninitialized value
+	page := notes.pages.FindByTitle(title)
+
+	if page == nil || page.Body == nil {
+		println("problematic page object")
+		return make([]byte, 0)
+	}
+
+	return page.Body
+}
+
 type Logger interface {
 	Log(message string) error
 }
