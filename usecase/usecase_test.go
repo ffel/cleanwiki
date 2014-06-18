@@ -8,14 +8,12 @@ import (
 
 // it should be possible to test usecases and domain independently
 // however, we need some stubs for the missing implementations of
-// the interfaces in Wiki
+// the interfaces in Notes
 
 func ExampleAdd() {
-	wiki := Wiki{&logger{}, &repo{}}
+	notes := Notes{&logger{}, &repo{}}
 
-	page := domain.Page{Title: "title", Body: []byte("hi world")}
-
-	wiki.Add(&page)
+	notes.Add("title", []byte("hi world"))
 
 	// output:
 	//
@@ -40,6 +38,10 @@ func (l *logger) Log(message string) error {
 
 type repo struct {
 }
+
+// see http://talks.golang.org/2012/10things.slide#8 and
+// http://stackoverflow.com/questions/16742331/how-to-mock-abstract-filesystem-in-go
+// however, a map is enough here.
 
 func (r *repo) Store(page *domain.Page) {
 
