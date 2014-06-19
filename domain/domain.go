@@ -5,8 +5,8 @@ package domain
 // that heavy (a string and a slice of bytes, slices
 // are light).
 type PageRepository interface {
-	Store(page *Page)
-	FindByTitle(title string) *Page
+	Store(page *Page) error
+	FindByTitle(title string) (*Page, error)
 }
 
 // Use []byte or string for Body is an implemetation detail that

@@ -21,30 +21,30 @@ type Notes struct {
 func (notes *Notes) Add(title string, content []byte) error {
 	page := domain.Page{Title: title, Body: content}
 	notes.logger.Log(fmt.Sprintf("add page %q", page.Title))
-	notes.pages.Store(&page)
+	err := notes.pages.Store(&page)
 
-	return nil
+	return err
 }
 
 // Read implements use case "read content by title"
 //
 // in case there is no contents, an empty slice of bytes
 // is returned
-func (notes *Notes) Read(title string) []byte {
+func (notes *Notes) Read(title string) ([]byte, error) {
 	// we must consider the fact that the implementations FindByTitle
 	// may return nil or a zero value Page
 	// see e.g. http://tour.golang.org/#42
 	//
 	// I think it is better that the FindByTitle returns an
 	// error instead of an (partially) uninitialized value
-	page := notes.pages.FindByTitle(title)
+	page, err := notes.pages.FindByTitle(title)
 
-	if page == nil || page.Body == nil {
+	if err != nil {
 		println("problematic page object")
-		return make([]byte, 0)
+		return make([]byte, 0), err
 	}
 
-	return page.Body
+	return page.Body, nil
 }
 
 type Logger interface {

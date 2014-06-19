@@ -5,7 +5,10 @@ on this [golang wiki tutorial](http://golang.org/doc/articles/wiki/).
 
 # Next
 
--	Make `FindByTitle` more idiomatic go.  Let it return an error.
+-	~~Make `FindByTitle` more idiomatic go.  Let it return an error.~~
+
+	A disadvantage of functions that return more than one value is
+	that these cannot be used "in place".  Code becomes more verbose.
 
 -	Basic *interface* and / or *infrastructure* implementation for
 	reading and writing notes.

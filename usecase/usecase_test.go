@@ -1,7 +1,9 @@
 package usecase
 
 import (
+	"errors"
 	"fmt"
+	"testing"
 
 	"github.com/ffel/cleanwiki/domain"
 )
@@ -25,14 +27,35 @@ func ExampleFindByTitle() {
 
 	notes.Add("title", []byte("hi planet earth"))
 
-	fmt.Printf("%q\n", notes.Read("title"))
-	fmt.Printf("%q\n", notes.Read("noSuchTitle"))
+	body, _ := notes.Read("title")
+	fmt.Printf("%q\n", body)
+
+	body, _ = notes.Read("noSuchTitle")
+	fmt.Printf("%q\n", body)
 
 	// output:
 	//
 	// add page "title"
 	// "hi planet earth"
 	// ""
+}
+
+func TestRead(t *testing.T) {
+	notes := Notes{&logger{}, NewRepo()}
+
+	notes.Add("title", []byte("hi planet earth"))
+
+	_, err := notes.Read("title")
+
+	if err != nil {
+		t.Error("expected no error")
+	}
+
+	_, err = notes.Read("noSuchTitle")
+
+	if err == nil {
+		t.Error("expected an error")
+	}
 }
 
 // implement Logger
@@ -66,14 +89,21 @@ func NewRepo() *repo {
 // http://stackoverflow.com/questions/16742331/how-to-mock-abstract-filesystem-in-go
 // however, a map is enough here.
 
-func (r *repo) Store(page *domain.Page) {
-	println("store", page.Title)
+func (r *repo) Store(page *domain.Page) error {
 	r.pages[page.Title] = page
+
+	return nil
 }
 
-func (r *repo) FindByTitle(title string) *domain.Page {
-	println("retrieve", title)
+func (r *repo) FindByTitle(title string) (*domain.Page, error) {
 	// in case title does not exist, a zero Page object is returned,
 	// see http://tour.golang.org/#42
-	return r.pages[title]
+
+	page, ok := r.pages[title]
+
+	if ok {
+		return page, nil
+	}
+
+	return nil, errors.New("no page found")
 }
