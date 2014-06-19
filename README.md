@@ -13,4 +13,14 @@ on this [golang wiki tutorial](http://golang.org/doc/articles/wiki/).
 -	Basic *interface* and / or *infrastructure* implementation for
 	reading and writing notes.
 
+	It turns out that implementing the page repository "leaks"
+	domain.Page into the infrastructure package.
+
+	This contrasts a little bit my previous attempts to prevent
+	leaking from `usecase.Add` and `usecase.Read`.
+
+	On the other hand, we may have succeeded to prevent leaking
+	in the repository test, which partly mimics the use of this
+	code in infrastructure or main.
+
 -	Proceed with the [tutorial](http://golang.org/doc/articles/wiki/#tmp_3).

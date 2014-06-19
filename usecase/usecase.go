@@ -9,9 +9,12 @@ import (
 // Notes is the Interactor equivalent
 // At this point I am not sure I have to do with a Wiki,
 // a Wiki is a possible application for the Notes
+//
+// Logger and Pages need to be public for these will be
+// injected outside the package (main probably)
 type Notes struct {
-	logger Logger
-	pages  domain.PageRepository
+	Logger Logger
+	Pages  domain.PageRepository
 }
 
 // Add implements use case "add a page to the notes"
@@ -20,8 +23,8 @@ type Notes struct {
 // this forces also higher layers to know about this concept
 func (notes *Notes) Add(title string, content []byte) error {
 	page := domain.Page{Title: title, Body: content}
-	notes.logger.Log(fmt.Sprintf("add page %q", page.Title))
-	err := notes.pages.Store(&page)
+	notes.Logger.Log(fmt.Sprintf("add page %q", page.Title))
+	err := notes.Pages.Store(&page)
 
 	return err
 }
@@ -37,7 +40,7 @@ func (notes *Notes) Read(title string) ([]byte, error) {
 	//
 	// I think it is better that the FindByTitle returns an
 	// error instead of an (partially) uninitialized value
-	page, err := notes.pages.FindByTitle(title)
+	page, err := notes.Pages.FindByTitle(title)
 
 	if err != nil {
 		println("problematic page object")
