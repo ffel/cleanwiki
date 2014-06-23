@@ -1,3 +1,4 @@
+// Package `usecase` used `domain` with an application in mind.
 package usecase
 
 import (
@@ -21,10 +22,15 @@ type Notes struct {
 //
 // I have decided against "domain.Page" as a parameter for
 // this forces also higher layers to know about this concept
+//
+// This decision seems to be quite ok as it prevents
+// tests in `interfaces` from depending on `domain.Page`.
+// This suggests that `infrastructure` does not need to know
+// about `domain.Page`.
 func (notes *Notes) Add(title string, content []byte) error {
 	page := domain.Page{Title: title, Body: content}
 	notes.Logger.Log(fmt.Sprintf("add page %q", page.Title))
-	err := notes.Pages.Store(&page)
+	err := notes.Pages.Store(page)
 
 	return err
 }

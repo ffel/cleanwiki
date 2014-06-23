@@ -75,12 +75,12 @@ func (l *logger) Log(message string) error {
 // implement domain.PageRepository
 
 type repo struct {
-	pages map[string]*domain.Page
+	pages map[string]domain.Page
 }
 
 func NewRepo() *repo {
 	r := repo{}
-	r.pages = make(map[string]*domain.Page)
+	r.pages = make(map[string]domain.Page)
 
 	return &r
 }
@@ -89,13 +89,13 @@ func NewRepo() *repo {
 // http://stackoverflow.com/questions/16742331/how-to-mock-abstract-filesystem-in-go
 // however, a map is enough here.
 
-func (r *repo) Store(page *domain.Page) error {
+func (r *repo) Store(page domain.Page) error {
 	r.pages[page.Title] = page
 
 	return nil
 }
 
-func (r *repo) FindByTitle(title string) (*domain.Page, error) {
+func (r *repo) FindByTitle(title string) (domain.Page, error) {
 	// in case title does not exist, a zero Page object is returned,
 	// see http://tour.golang.org/#42
 
@@ -105,5 +105,5 @@ func (r *repo) FindByTitle(title string) (*domain.Page, error) {
 		return page, nil
 	}
 
-	return nil, errors.New("no page found")
+	return domain.Page{}, errors.New("no page found")
 }

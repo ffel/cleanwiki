@@ -1,3 +1,5 @@
+// Package `interfaces` implements domain details with external
+// solutions in mind e.g. way to store data.
 package interfaces
 
 import (
@@ -13,6 +15,11 @@ type PageFileRepo struct {
 // as a one file per page repository
 //
 // In usecase.Add I tried to hide domain.Page, here is it again...
+// You have to keep in mind that this method is here because of
+// `usecase`, not because of `infra`!
+//
+// In other words, defined in `domain`, used in `usecases` and
+// implemented in `interfaces`
 func (repo *PageFileRepo) Store(page *domain.Page) error {
 	filename := page.Title + ".txt"
 
@@ -23,6 +30,8 @@ func (repo *PageFileRepo) Store(page *domain.Page) error {
 // as a one file per page repository
 //
 // In usecase.Read I tried to hide domain.Page, here it is again ...
+//
+// see Store.
 func (repo *PageFileRepo) FindByTitle(title string) (*domain.Page, error) {
 	filename := title + ".txt"
 	body, err := ioutil.ReadFile(filename)
