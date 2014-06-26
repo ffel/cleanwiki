@@ -8,7 +8,24 @@ import (
 	"github.com/ffel/cleanwiki/domain"
 )
 
+// We define an interface here which for now extends `ReadWriter`
+// with nothing.
+//
+//
+type StorageHandler interface {
+	ReadWriter
+}
+
+// PageFileRepo is a repo that stores notes in files.
+//
+// In fact, the name is not good enough, `ReadWriterRepo` would
+// be more appropriate.
+//
+// In package `infrastruct` we instantiate a PageFileRepo which
+// will provide the ReadWriter.  As such, that package is free
+// to use any combination of reader writer chaining.
 type PageFileRepo struct {
+	handler StorageHandler
 }
 
 // Store implements domain.PageRepository.Store
