@@ -173,3 +173,49 @@ Het tweede gedeelte bestaat uit het opsturen van het artikel.
 > het clean architecture verhaal: "users" zijn daar in de use case code
 > gedefinieerd. Interfaces heeft er op zijn beurt weer geen weet van dat
 > "customers" domein zijn en "users" "use case".
+
+> Volgens mij stuit ik nu op een verschil tussen de fabriekanalogie en
+> de echte implementatie: in de fabriekanalogie raakt de usecase nu de
+> controle kwijt door het onderdeel in combinatie met adres naar de
+> interface te sturen die de interne representatie omzet naar de externe
+> representatie: een brief geadresseerd volgens de regels en voldoende
+> gefrankeerd. Deze brief gaat vervolgens naar de postkamer om verstuurd
+> te worden (de analogie voor infrastructuur).
+
+> Ik twijfel nog een beetje over de implementatie in de applicatie. In
+> een synchrone applicatie krijgt de oorspronkelijke controller wellicht
+> weer de controle en retouneert het resultaat. Dit is vermoedelijk niet
+> hoe het echt gaat. Zelfs in een synchrone applicatie is er geen sprake
+> van een directe return. Net als in lht zet de invoer iets in werking
+> waar even later een bericht komt op basis waarvan de view update en
+> zich aanpast aan de nieuwe situatie. De front-end is stateless en laat
+> als zodanig niet de return waarde zien maar synchroniseert met de
+> model representatie.
+
+Degene die het verzoek van Anna afhandelt geeft de postkamer de opdracht
+het onderdeel naar Anna te sturen.
+
+-   In de postkamer wordt gezorgd voor correcte adressering en
+    frankering en de post wordt naar de ruimte gebracht waar alle
+    uitgaande post wordt verzameld om door de ptt te worden opgehaald.
+
+-   Een dag later ontvangt Anna het onderdeel en ze kan haar spel weer
+    spelen.
+
+Je hebt het verhaal van de magazijn medewerker nog tegoed.
+
+-   Het telefonisch verzoek kwam op een andere plek binnen dan dat de
+    beller dacht. Het kwam bij de magazijnmedewerkers binnen.
+
+-   De magazijnmedewerker heeft het nummer ingevoerd in het
+    administratie systeem van het magazijn. Het automatische
+    magazijnsysteem pikte het onderdeel op uit het nieuwe onbemande
+    systeem.
+
+    > Vroeger deed iedereen maar wat in het magazijn. Mensen liepen in
+    > en uit. Dingen werden zonder te melden meegenomen en andere
+    > rotzooi werd "tijdelijk" in het magazijn gestald. Niemand had meer
+    > overzicht wat er nu precies was en wat aangevuld moest worden.
+
+    Nadat het artikel was afgeleverd bij de magazijnmederwerker heeft
+    deze het meteen naar de bellende medewerker gebracht.
