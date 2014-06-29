@@ -130,32 +130,33 @@ We gaan eerst het artikel uit de voorraad halen.
 -   Degene die het verzoek van Anna afhandelt belt "Domein" met de vraag
     of deze het artikel met genoemde artikelnummer brengt.
 
-> Waarom hier bellen? Het is van belang te snappen dat in deze use case
-> code een functie van het domein wordt geroepen. Dat is op zich niet
-> anders dan alle voorgaande acties waar in een cirkel een functie op
-> een binnenliggende functie wordt geroepen.
+    > Waarom hier bellen? Het is van belang te snappen dat in deze use
+    > case code een functie van het domein wordt geroepen. Dat is op
+    > zich niet anders dan alle voorgaande acties waar in een cirkel een
+    > functie op een binnenliggende functie wordt geroepen.
 
-> Tegelijk zitten we met het conceptueel lastige dat de beller denkt het
-> domein te bellen. Het is dan ook vastgelegd dat dit één van de
-> verantwoordelijkheden is van het domein. Terecht mag je ze met deze
-> vraag lastig vallen.
+    > Tegelijk zitten we met het conceptueel lastige dat de beller denkt
+    > het domein te bellen. Het is dan ook vastgelegd dat dit één van de
+    > verantwoordelijkheden is van het domein. Terecht mag je ze met
+    > deze vraag lastig vallen.
 
-> Het lastige is dat het Domein de uitvoering van deze opdracht overlaat
-> aan een functie in "interface". Het is in de code nog erger, het
-> Domein weet officieel niet eens / bepaalt niet *wie* die opdracht
-> uitvoert.
+    > Het lastige is dat het Domein de uitvoering van deze opdracht
+    > overlaat aan een functie in "interface". Het is in de code nog
+    > erger, het Domein weet officieel niet eens / bepaalt niet *wie*
+    > die opdracht uitvoert.
 
-> Wie de opdracht uitvoert wordt bepaald door de "wiring" in de
-> applicatie. Ergens zit een super afdeling ("main") die op een goede
-> dag heeft besloten dat de afhandeling van deze vraag niet meer gedaan
-> wordt door Piet in zijn grijze stofjas, maar door een aantal
-> magazijnmedewerkers die een daartoe bestemde opleiding met succes
-> hebben gevolgd en werken in het nieuwe magazijn dat door een
-> professioneel bedrijf is opgezet en ingericht.
+    > Wie de opdracht uitvoert wordt bepaald door de "wiring" in de
+    > applicatie. Ergens zit een super afdeling ("main") die op een
+    > goede dag heeft besloten dat de afhandeling van deze vraag niet
+    > meer gedaan wordt door Piet in zijn grijze stofjas, maar door een
+    > aantal magazijnmedewerkers die een daartoe bestemde opleiding met
+    > succes hebben gevolgd en werken in het nieuwe magazijn dat door
+    > een professioneel bedrijf is opgezet en ingericht.
 
-    Al snel komt iemand met het artikel binnen.  Voordat hij weer wil vertrekken
-    kunnen we hem nog net even een kop koffie aanbieden en we vragen geïnteresseerd
-    hoe hij weet dat hij dit artikel moest zoeken en hier brengen.
+    Al snel komt iemand met het artikel binnen. Voordat hij weer wil
+    vertrekken kunnen we hem nog net even een kop koffie aanbieden en we
+    vragen geïnteresseerd hoe hij weet dat hij dit artikel moest zoeken
+    en hier brengen.
 
     Dat verhaal hoor je later.
 
