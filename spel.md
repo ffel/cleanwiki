@@ -300,11 +300,11 @@ Bob werkt op de postkamer van De Speelgoedfabriek en doet een eerste
 schifting van de binnengekomen post. De kaart van Anna komt op het
 stapeltje met andere vervangingsverzoeken.
 
-Het is Carl die de vervangingsverzoeken afhandelt. Carl controleert of
-alle informatie leesbaar op het verzoek staat. Ook doet hij een eerste
-controle. Spelnummers zijn altijd een getal tussen 100 en 1000. Soms is
-wel iets ingevuld waarvan onmogelijk is af te leiden welk spel bedoeld
-wordt.
+Het is Carl (van Klantenservice?) die de vervangingsverzoeken afhandelt.
+Carl controleert of alle informatie leesbaar op het verzoek staat. Ook
+doet hij een eerste controle. Spelnummers zijn altijd een getal tussen
+100 en 1000. Soms is wel iets ingevuld waarvan onmogelijk is af te
+leiden welk spel bedoeld wordt.
 
 Carl neemt ook wel eens de telefoon aan. Sommige klanten weten het
 telefoonnummer van De Speelgoedfabriek te achterhalen en bellen met het
@@ -371,19 +371,108 @@ ingevoerd. Wanneer je dat doet wordt even later het artikel gebracht.
 > artikelen kunnen worden opgehaald. Dat geeft meer "smoel" aan het
 > domein.
 
-> > Ed en Fred worden dan Fred en Gerry
+> > Ed en Fred worden dan Fiona en Geoff
 
 Dani voert het artikelnummer van het artikel dat Anna vervangen wil
 hebben in in zo'n terminal. Dit verzoek komt meteen binnen bij Ed. Ed
-heeft de beschikking over het magazijnsysteem en hij zoek meteen uit
+heeft de beschikking over het magazijnsysteem en zij zoek meteen uit
 waar in het magazijn het artikel te vinden is.
 
 Ed laat het artikel door Fred ophalen (Fred heeft een uitzendbaantje en
-haalt artikelen uit het magazijn). Fred heeft van Ed de nummer van de
+haalt artikelen uit het magazijn). Fred heeft van Ed het nummer van de
 stellingkast gekregen waar volgens het systeem nog meer dan genoeg van
 die onderdelen liggen. Nadat Fred Ed het onderdeel heeft gegeven brengt
 Ed het naar Dani. Ed hoopt even koffie met Dani te kunnen drinken, dat
 is altijd gezellig.
+
+> Een aantal nachtelijke gedachten
+
+> Het gaat er in deze analogie niet zozeer om wat de juiste oplossing
+> is, het gaat erom dat er een context is waarin een aantal mogelijke
+> oplossingen voor een probleem vergeleken kunnen worden en zo voor- en
+> nadelen tegen elkaar kunnen worden afgewogen. Het gaat dus om een
+> kader te scheppen waardoor je een zo goed mogelijke oplossing
+> ontwikkeld.
+
+> Je kan er ook zo tegenaankijken. Het gaat er om dat je problemen
+> oplost door duidelijke rollen te definieren. Door te voorkomen dat je
+> onduidelijkheid krijgt door overlap van verantwoordelijkheden. Door er
+> voor te zorgen dat problemen tussen wal en schip vallen doordat
+> niemand de verantwoordelijkheid heeft of neemt er iets aan te doen.
+
+> De hele opzet van De Speelgoedfabriek is om snel aan te kunnen passen
+> aan wisselenden omstandigheden. En je krijgt snelheid door in geval
+> van een probleem op zo weinig mogelijk plekken een aanpassing te
+> moeten doen.
+
+> Alarm! Beveiliging nodig. Kan dat nu in de structuur worden ingepast
+> zonder alle bestaande componenten aan te moeten passen (oké, één
+> component). Ik ben geneigd na te gaan denken over de vraag of de toe
+> te voegen beveiliging in "infrastructuur" komt, of in "interfaces" of
+> misschien toch "use cases" (zoals in clean architecture verhaal). Het
+> antwoord is denk ik niet zondermeer "dit probleem los je altijd op
+> deze manier op". Vanuit het idee dat je zo weinig mogelijk moet
+> veranderen zou je een compleet nieuwe use case kunnen *toevoegen* (dat
+> is heel wat anders als *veranderen* van bestaande rollen). We zouden
+> Bob de taak kunnen geven om het proces te starten of Anna om een nieuw
+> onderdeel mag vragen. Misschien is het beter om het Carl te laten
+> doen. Misschien komen we wel tot de conclusie dat er een fundamentele
+> fout zit in de manier waarop Dani haar werk doet en moeten we daar
+> aanpassen.
+
+> Dus, nogmaals, de architectuur is niet alleen het antwoord, het is
+> misschien nog veel meer het proces dat leidt tot een antwoord.
+
+> In deze analogie loopt het adres van Anna mee. Dat lijkt me overbodig.
+> Je kan de individuele rollen of processen nog atomairder maken door
+> Bob de verantwoordelijkheid te geven de communicatie met de
+> buitenwereld te verzorgen.
+
+> Op deze manier scheidt Bob het adres van Anna en de taak die moet
+> worden gedaan. Om precies te zijn:
+
+> 1.  Bob zorgt dat Carl een vervangingsverzoek kan gaan uitvoeren.
+
+> 2.  Het adres van Anna is geen onderdeel van dat verzoek, Bob zorgt er
+>     voor dat wanneer er op een moment een gevulde envelop voor Anna
+>     komt dat haar adres er weer op komt.
+
+> 3.  Er zit nog een interessant aspect aan die envelop. Bob weet hoe je
+>     iets goed en voordelig kan versturen. Carl heeft op een moment
+>     iets om te versturen. Bob zal uit zichzelf nooit iets versturen,
+>     dat is niet zijn taak. Carl moet wel iets versturen maar wil zich
+>     niet druk maken over hoe dit zo efficiënt mogelijk kan.
+
+> We hebben hier dezelfde situatie als met het magazijn. In een van de
+> binnencirkels is besloten dat onderdelen en hele spellen verzonden
+> moeten kunnen worden. Er is een structuur opgezet waardoor mensen in
+> de binnencirkel op een uniforme wijze items kunnen verzenden zonder
+> dat deze weet hoeven te hebben over wat de beste manier is.
+
+> Om dit op te lossen is het mogelijk dat Carl uiteindelijk het
+> onderdeel doet in een envelop die hij ook van de postkamer krijgt
+> (niet per se Bob) en dat het kaartje van Bob aan deze envelop
+> bevestigd wordt.
+
+> Waar ik geloof ik heen wil is dat er een interface is die door Bob
+> wordt geïmplementeerd. In deze analogie zorgt Bob er dan voor dat Carl
+> de juiste type envelop krijgt om het onderdeel van Anna in te doen.
+
+> Dit systeem is helemaal niet handig wanneer een medewerker uit de
+> binnencirkel een brief wil sturen aan een of andere instantie. Nou is
+> dit wel een andere use case, maar het is toch wel aardig wanneer
+> dezelfde rol verdeling kan gebruiken.
+
+> Een oplossing hiervoor zou kunnen zijn dat medewerkers die brieven
+> sturen deze nooit zelf hoeven te printen. Eenmaal ingevoerd zou de
+> postkamer voor printen, de envelop, addresering en frankering kunnen
+> zorgen.
+
+> Je ziet bijna als vanzelf het kanban systeem in deze organisatie
+> ontstaan. Op moment dat je voor iedere overdracht een kaartje hebt is
+> dat feitelijk ook zo. Als vanzelf krijg je ook een concurrent
+> oplossing lijkt het wel waarin kaartjes over channels verstuurd kunnen
+> worden. Voeg nog een beetje Kaizen toe en je bent lekker bezig.
 
 * * * * *
 
